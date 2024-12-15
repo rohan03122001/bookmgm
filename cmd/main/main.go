@@ -8,9 +8,17 @@ import (
 	"github.com/rohan03122001/bookmgm/pkg/routes"
 )
 
+// main initializes and starts the HTTP server with configured routes
 func main() {
-	r := mux.NewRouter()
-	routes.RegisterBookStoreRoutes(r)
-	http.Handle("/",r)
-	log.Fatal(http.ListenAndServe("localhost:9010",r))
+    // Initialize router with Gorilla Mux
+    r := mux.NewRouter()
+    
+    // Register API routes from the routes package
+    routes.RegisterBookStoreRoutes(r)
+    
+    // Set up default route handler
+    http.Handle("/", r)
+    
+    // Start server on port 9010 and log any fatal errors
+    log.Fatal(http.ListenAndServe("localhost:9010", r))
 }
